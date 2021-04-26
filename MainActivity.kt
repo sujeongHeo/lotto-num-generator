@@ -52,12 +52,14 @@ class MainActivity : AppCompatActivity() {
 
         initRunButton()
         initAddButton()
+        initClearButton()
     }
 
     private fun initRunButton(){
         runButton.setOnClickListener {
             val list = getRandomNumber()
 
+            didRun = true
             Log.d("MainActivity", list.toString())
         }
     }
@@ -81,6 +83,16 @@ class MainActivity : AppCompatActivity() {
             textView.text = numberPicker.value.toString()
 
             pickNumberSet.add(numberPicker.value)
+        }
+    }
+
+    private fun initClearButton() {
+        clearButton.setOnClickListener {
+            pickNumberSet.clear()
+            numberTextViewList.forEach{
+                it.isVisible = false
+            }
+            didRun = false
         }
     }
     private fun getRandomNumber(): List<Int> {
